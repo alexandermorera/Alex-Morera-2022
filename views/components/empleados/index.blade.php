@@ -19,6 +19,7 @@
             <td>{{ $empleado->nombre}}</td>
             <td>{{ $empleado->estado}}</td>
             <td>
+            <button href=  {{url("empleados/".$empleado->id) }} type="button" class="btn btn-secondary">Ver</button> 
             <button type="button" class="btn btn-primary">Editar</button>
             <button type="button" class="btn btn-danger">Eliminar</button>
             </td>
@@ -26,5 +27,12 @@
         @endforeach
     </tbody>
 </table>
-
+<script>
+document.querySelectorAll("button").forEach(el => {
+     el.addEventListener('click', (ev) => {
+         window.location.href = ev.target.getAttribute('href');
+    })
+})
+</script>
 @stop
+
