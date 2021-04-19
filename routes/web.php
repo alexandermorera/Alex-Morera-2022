@@ -1,12 +1,5 @@
 <?php
 
-use App\Http\Controllers\EmpleadosController;
-use App\Models\Empleado;
-use Illuminate\Support\Facades\Route;
-use App\Models\Empresa;
-
-
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,37 +11,15 @@ use App\Models\Empresa;
 |
 */
 
-
-
-/* Route::get('/', function () {
-    return view('pages.home');
+Route::get('/', function () {
+    return view('welcome');
 });
 
-Route::get('/contact', function () {
-    return view('pages.contact');
-});
 
-Route::get('testEmpresas',function() {
+//Routers Auth
+Route::get('/login', 'ConnectController@getLogin')->name('login');
+Route::post('/login', 'ConnectController@postLogin')->name('login');
+Route::get('/register', 'ConnectController@getRegister')->name('register');
+Route::post('/register', 'ConnectController@postRegister')->name('register');
+Route::get('/logout', 'ConnectController@getLogout')->name('logout');
 
-	$empleados = Empleado::where('nombre','like','a%')->orderBy('nombre')->get();
-	dd($empleados);
-
-});
-
-Route::get('/empleado', function (){
-	$empleados = Empleado::all();
-	dd($empleados);
-
-});
-
-Route::get('saludar/{idEmpleado}', function($idEmpleado){
-	$empleado = Empleado::where('id', $idEmpleado)->first();
-	return view('hola')->with('empleado',$empleado);
-});
-
-Route::get('saludoEmpleados/{estado}', function($estado){
-	$empleados = Empleado::where('estado',$estado)->get();
-	return view('hola',compact('empleados','estado'));
-}); 
- */
-Route::resource('empleados',EmpleadosController::class);
